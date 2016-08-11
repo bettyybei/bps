@@ -8,6 +8,7 @@ app.config(function ($stateProvider) {
 
 app.controller('HomeController', function ($scope) {
     $(".button-collapse").sideNav();
+    $('.collapsible').collapsible();
 
     $scope.elements = [];
 
@@ -32,7 +33,7 @@ app.controller('HomeController', function ($scope) {
     }
 
     $scope.addImage = function () {
-      $scope.elements.push({type: 'image'});
+      $scope.elements.push({type: 'image', url: $scope.image.url});
       $('.button-collapse').sideNav('hide');
     }
 

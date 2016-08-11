@@ -2,11 +2,24 @@
 
   <ul id="slide-out" class="side-nav">
     <br><br><br><br>
-    <li><a class="waves-effect" ng-click=addNavbar()>New Navbar</a></li>
+     <li><a class="waves-effect" ng-click=addNavbar()>New Navbar</a></li>
     <li><a class="waves-effect" ng-click=addLogo()>New Logo</a></li>
     <li><a class="waves-effect" ng-click=addButton()>New Button</a></li>
     <li><a class="waves-effect" ng-click=addDiv()>New Div</a></li>
-    <li><a class="waves-effect" ng-click=addImage()>New Image</a></li>
+    <li class="no-padding">
+      <ul class="collapsible collapsible-accordion">
+        <li class="bold"><a class="collapsible-header  waves-effect waves-teal">New Image</a>
+          <div class="collapsible-body">
+            <ul>
+              <li><form class="image" novalidate>
+                Image Url: <input type='text' ng-model='image.url'>
+                <input type='submit' ng-click='addImage()' required>
+              </form></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </li>
     <li><a class="waves-effect" ng-click=addText()>New Text Box</a></li>
     <li><button class="btn" id="finish-button" ng-click="finished()">finished</button></li>
 
@@ -19,7 +32,8 @@
       <fullstack-logo ng-show="element.type === 'logo'"></fullstack-logo>
       <new-button ng-show="element.type === 'button'"></new-button>
       <our-div ng-show="element.type === 'div'"></our-div>
-      <user-image ng-show="element.type === 'image'"></user-image>
+      <user-image ng-show="element.type === 'image'" image='element.url'></user-image>
+
       <text-box ng-show="element.type === 'textbox'"></text-box>
     </div>
   </div>
