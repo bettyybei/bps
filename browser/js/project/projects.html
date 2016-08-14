@@ -1,7 +1,8 @@
 <h1> Hey there </h1>
 <button ng-click="add()">Add Project</button>
-<div ng-repeat = "project in projects">
-{{project}}
+<div ng-repeat ="project in projects" >{{project.name}}</div>
+<div  ng-repeat = "content in contents">
+ Project details: {{content}}
 <button type="button" class="btn btn-sm btn-danger btn-spacer" ng-click='deleter(project.id)'>delete</button>
 </div>
 

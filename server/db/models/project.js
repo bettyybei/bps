@@ -2,7 +2,10 @@ var Sequelize = require('sequelize');
 var db = require('../_db');
 
 module.exports = db.define('project',{
-    name: {
+    contents: {
         type: Sequelize.STRING
+    },
+    name: {
+    	type: Sequelize.STRING
     }
 });

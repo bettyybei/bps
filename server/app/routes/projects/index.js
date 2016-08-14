@@ -1,30 +1,25 @@
+'use strict';
 var router = require('express').Router();
-var Project = require('../../../db/models/project')
-var Element = require('../../../db/models/project')
 module.exports = router;
+var db = require('../../../db')
+var Project = db.model('project')
+var User = db.model('user')
 
 router.get('/', function(req,res,next){
-	
-	return Project.findAll({
-		where:{
-			userId: req.params.userId
+	Project.findAll({
+		where: {
+			userId: req.user.id
 		}
 	})
 	.then(function(projects){
-		res.json(projects);
-	})
+		res.send(projects);
+	})	
 })
 
-// router.get('/:id', function(req,res,next){
-// 	return Project.findById(req.params.id)
-// 	.then(function(project){
-// 		res.json(project);
-// 	})
-// })
-
-router.post('/', function(req,res,next){
-	return Project.create(req.body)
+router.post('/create', function(req,res,next){
+	Project.create(req.body)
 	.then(function(project){
+		project.setUser(req.user.id)
 		res.json(project);
 	})
 })

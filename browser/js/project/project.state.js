@@ -16,8 +16,15 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('ProjectController', function ($scope, Home, AllProjects, ProjectFactory) {
-	$scope.projects = AllProjects;
-
+	
+	$scope.projectNames = AllProjects; //the AllProjects gives us the name of the project
+	
+	var arr =[]	//decode the stringified AllProjects so we can access orginal content
+	for (var i = 0; i<AllProjects.length; i++) {
+		arr.push(JSON.parse(AllProjects[i].contents))
+	}
+	$scope.contents = arr
+	
 	$scope.deleter = function(id){
 		ProjectFactory.deleteById(id)
 		.then(function(){
@@ -26,7 +33,7 @@ app.controller('ProjectController', function ($scope, Home, AllProjects, Project
 	}
 
 	$scope.add = function(){
-		ProjectFactory.addProject()
+		ProjectFactory.create()
 		.then(function(){
 			$state.reload()
 		})

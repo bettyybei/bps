@@ -1,3 +1,4 @@
+
 app.config(function ($stateProvider) {
     $stateProvider.state('home', {
         url: '/',
@@ -7,10 +8,11 @@ app.config(function ($stateProvider) {
 });
 
 
-app.controller('HomeController', function ($scope, $rootScope, Home) {
+app.controller('HomeController', function ($scope, $rootScope, Home, ProjectFactory) {
     $(".button-collapse").sideNav();
     $('.collapsible').collapsible();
     $scope.elements = [];
+    var obj = {}
 
     $scope.addNavbar = function () {
       $scope.elements.push({type: 'navbar'});
@@ -42,7 +44,17 @@ app.controller('HomeController', function ($scope, $rootScope, Home) {
       $('.button-collapse').sideNav('hide');
     }
 
+    $scope.addProjectName = function () {
+    obj.name = $scope.projectName;
+    }
+
     $scope.finished = function () {
+     
+      var stringedElements =JSON.stringify($scope.elements)
+      
+      obj.contents = stringedElements
+
+ 
       // var p = document.getElementById("canvas");
       // var pClone = p.cloneNode(true);
       // console.log(pClone);
@@ -51,6 +63,9 @@ app.controller('HomeController', function ($scope, $rootScope, Home) {
       .then(function(){
         $scope.elements.map(element=>Home.create(element))
       })   
+      .then(function(){
+        ProjectFactory.create(obj)
+      })
     }
 
     $scope.selectedColor = 'blue';

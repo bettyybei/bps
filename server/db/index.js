@@ -6,7 +6,10 @@ var User = require('./models/user');
 var Project = require('./models/project')
 var Element = require('./models/element')
 
+
+
 User.hasMany(Project);
+Project.belongsTo(User)
 Project.hasMany(Element);
 
 // db.sync()
