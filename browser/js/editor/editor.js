@@ -28,7 +28,13 @@ app.controller('EditorController', function ($scope, $rootScope, EditorFactory, 
     $scope.shades = ['darken-4', 'darken-3', 'darken-2', 'original', 'lighten-1', 'lighten-2', 'lighten-3', 'lighten-4', 'lighten-5']
 
     $scope.addComponent = function (type) {
-      $scope.elements.push({type: type, projectId: theProject.id});
+      var duplicateNavbar = false;
+      if(type==='navbar'){
+        $scope.elements.forEach(function(element){
+          if(element.type==='navbar') duplicateNavbar=true;
+        })
+      }
+      if(!duplicateNavbar) $scope.elements.push({type: type, projectId: theProject.id});
       $('.button-collapse').sideNav('hide');
     }
 
