@@ -20,6 +20,7 @@ app.directive('newButton', function () {
         	scope.currentColor = 'blue'
           scope.$on('colorChange', function(event, color){
             if (scope.isSelected) {
+              scope.$parent.elements[scope.$parent.$index].color = color;
               theButton.removeClass(scope.currentColor);
               theButton.addClass(color);
               scope.currentColor = color;
@@ -29,6 +30,7 @@ app.directive('newButton', function () {
           scope.currentShade = 'original'
           scope.$on('shadeChange', function(event, shade){
             if (scope.isSelected) {
+              scope.$parent.elements[scope.$parent.$index].shade = shade;
               theButton.removeClass(scope.currentShade);
               theButton.addClass(shade);
               scope.currentShade = shade;
