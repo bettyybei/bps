@@ -1,4 +1,5 @@
-app.config(function ($stateProvider) {
+app.config(function ($compileProvider,$stateProvider) {
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(|blob|):/);
     $stateProvider.state('renderCode', {
         url: '/renderCode',
         params: {elements: []},
@@ -7,7 +8,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('renderCodeController', function($scope,$stateParams){
+app.controller('renderCodeController', function($scope,$stateParams,$window){
     var templateCode = `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -21,12 +22,19 @@ app.controller('renderCodeController', function($scope,$stateParams){
     </head>
     <body>`;
     $stateParams.elements.forEach(function(element){
+        console.log(element)
         renderCode(element);
+        console.log(templateCode)
     })
     templateCode+=`</body>
     </html>`
 
     $scope.template = templateCode;
+
+    //generate html file
+    var blob = new Blob([ templateCode ], { type : 'html/HTML' });
+    var url = $window.URL || $window.webkitURL;
+    $scope.fileUrl = url.createObjectURL(blob);
 
     function renderCode(element){ 
         if(element.type==='button'){
