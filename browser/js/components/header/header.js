@@ -31,12 +31,9 @@ app.directive('header', function () {
               scope.$parent.elements[ind].fontsize = size
               scope.$parent.elements[ind].width = obj.size.width;
               scope.$parent.elements[ind].height = obj.size.height;
-         
-
-              
              
             }
-          });
+            });
 
         }
     };

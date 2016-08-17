@@ -1,4 +1,5 @@
 
+
 app.config(function ($stateProvider) {
     $stateProvider.state('editor', {
         url: '/editor/:id',
@@ -21,6 +22,40 @@ app.config(function ($stateProvider) {
 
 
 app.controller('EditorController', function ($scope, $rootScope, EditorFactory, ProjectFactory, theProject) {
+  var modal = document.getElementById('myModal');
+
+  // Get the button that opens the modal
+  var btn = document.getElementById("myBtn");
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  function display() {  //displaying modal 
+    modal.style.display = "block";
+  }
+
+  ProjectFactory.getProjects()
+  .then(function(projects){
+    for(var i =0; i<projects.length; i++){
+      if(projects[i].id === theProject.id && projects[i].name === "Untitled Project") display() 
+    }   
+  })
+
+ $scope.sendRegister = function() {
+    ProjectFactory.updateName(theProject.id, $scope.inputTitle)
+    .then(function(){
+      modal.style.display = "none"
+    })
+  }
+   
+    //modal
+
+
     $(".button-collapse").sideNav();
     $('.collapsible').collapsible();
     $scope.elements = theProject.elements;
@@ -73,7 +108,6 @@ app.controller('EditorController', function ($scope, $rootScope, EditorFactory, 
         $scope.elements.map(element => EditorFactory.createElement(element))
       })
       .then(function(){
-        console.log('success!');
       })
     }
 

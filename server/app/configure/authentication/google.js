@@ -29,7 +29,6 @@ module.exports = function (app, db) {
                     return User.create({
                         firstName: profile.name.givenName,
                         lastName: profile.name.familyName,
-                        status: 'registered',
                         email: profile.emails[0].value,
                         google_id: profile.id
                     });

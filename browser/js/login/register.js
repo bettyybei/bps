@@ -8,16 +8,21 @@ app.config(function($stateProvider){
 });
 
 
-app.controller('RegisterCtrl', function($scope, $state, RegisterFactory, AuthService) {
+app.controller('RegisterCtrl', function($scope, $state, RegisterFactory, ProjectFactory, AuthService) {
 
     $scope.sendRegister = function(){
         RegisterFactory.create($scope.register)
         .then(function(){
             let obj = {email: $scope.register.email, password: $scope.register.password}
 
-            AuthService.login(obj).then(function () {
-                $state.go('home');
-            }).catch(function () {
+            AuthService.login(obj).then(function(){
+                ProjectFactory.getProjects()
+                .then(function(projects){
+                    $state.go('editor', {id: projects[0].id});
+                })
+                 
+        
+            }).catch(function() {
                 $scope.error = 'Invalid login credentials!';
             });
         })
@@ -28,4 +33,4 @@ app.controller('RegisterCtrl', function($scope, $state, RegisterFactory, AuthSer
         })
     }
 
-})
+    })

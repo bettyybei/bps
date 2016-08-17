@@ -1,4 +1,21 @@
 <section id="editor">
+  
+ 
+<div id="myModal" class="modal float_center">
+  <div class="modal-content">
+    <span class="close">x</span>
+    
+  <form id="login-form" name="registerForm" ng-submit="sendRegister(name)">
+    <h3>Register Project Name</h3>
+    <div class="form-group">
+        <input type="text" ng-model="inputTitle" class="form-control" placeholder="Enter project name">
+    </div>
+    <button class="btn" id="finish-button">Save Project <i class="material-icons right">send</i></button>
+    </form>
+    
+  </div>
+</div>
+  
 
   <ul id="slide-out" class="side-nav">
     <br><br><br><br>

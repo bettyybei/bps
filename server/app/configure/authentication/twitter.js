@@ -38,7 +38,6 @@ module.exports = function (app, db) {
 
                         firstName: first[0],
                         lastName: first[1],
-                        status: 'registered',
                         email: profile.username +'@gmail.com',
                         twitter_id: profile.id,
                     });
