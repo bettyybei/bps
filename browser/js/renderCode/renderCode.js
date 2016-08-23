@@ -48,7 +48,7 @@ app.config(function ($compileProvider,$stateProvider) {
         <img src="${element.url}" style="position: absolute; height: ${element.height}px; width:${element.width}px; top: ${element.top}px; left: ${element.left}px;">`;
                     } else if (element.type==='logo') {
                         template+=`
-        <img src="https://jlau-bucket-1.s3.amazonaws.com/uploads/topic/image/42/fullstack.png" style="position: absolute; height: ${element.height}px; width:${element.width}px; top: ${element.top}px; left: ${element.left}px;">`;
+        <img src="https://s9.postimg.org/7o47uj1lr/paletro2.png" style="position: absolute; height: ${element.height}px; width:${element.width}px; top: ${element.top}px; left: ${element.left}px;">`;
                     } else if (element.type==='navbar') {
                         template+=`
         <nav class="${element.color} ${element.shade}">
