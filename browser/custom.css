@@ -52,6 +52,11 @@
   padding: 80px 0;
 }
 
+#sidebar-logo {
+  height: 50px;
+  width: 50px;
+}
+
 /*Editor Page CSS*/
 #editor {
   height: 500vh;
@@ -111,11 +116,7 @@
 .absolute {
   position: absolute; !important
 }
-/*
-.vertical-align {
-  padding-top: 50%;
-  display: block;
-}*/
+
 .disclaimer {
   font-size: 11px;
   padding-bottom: 2%;
@@ -250,4 +251,10 @@
 
 #first-button {
   margin-left: 30px;
+}
+
+@media (max-width: 600px) {
+  #front-page h1 {
+    font-size: 36px; !important
+  }
 }

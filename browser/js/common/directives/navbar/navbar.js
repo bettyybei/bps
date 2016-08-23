@@ -6,6 +6,14 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
         templateUrl: 'js/common/directives/navbar/navbar.html',
         link: function (scope) {
 
+            $( document ).ready(function(){
+                $(".button-collapse").sideNav();
+            })
+
+            scope.closeSideNav = function () {
+                $('.button-collapse').sideNav('hide');
+            }
+
             scope.items = [
                 { label: 'Home', state: 'home' },
                 { label: 'About', state: 'about' },
