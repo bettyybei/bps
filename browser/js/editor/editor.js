@@ -118,7 +118,7 @@ app.controller('EditorController', function ($scope, $rootScope, EditorFactory, 
 
   $scope.addComponent = function (type) {
     if (type==='button') {
-      $scope.elements.push({type: type, projectId: theProject.id, color: 'blue', shade: 'original', top: 100, left: 400, width: 200, height: 100});
+      $scope.elements.push({type: type, projectId: theProject.id, color: 'blue', shade: 'original', top: 100, left: 400, width: 170, height: 40});
     }
     else if (type==='logo') {
       $scope.elements.push({type: type, projectId: theProject.id, top: 100, left: 400, width: 100, height: 100});
