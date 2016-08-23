@@ -34,7 +34,6 @@
   position: relative;
 }
 
-
 #front-page h1 {
   margin: 0;
   padding-top: 27%;
@@ -147,6 +146,10 @@
   margin-top: 30px;
 }
 
+.oauth {
+  width: 300px;
+}
+
 /*Preview Iframe*/
 #IframeWrapper {
   width: 320px;
@@ -178,11 +181,6 @@
   left:0;
   width:320px;
   height:192px;
-}
-
-
-.oauth {
-  width: 300px;
 }
 
 /*Grid CSS*/

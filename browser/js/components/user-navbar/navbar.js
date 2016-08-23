@@ -30,18 +30,12 @@ app.directive('userNavbar', function () {
             }
           });
 
-          scope.$on('deleteNavbar', function(event){
-            if (isSelected&&confirm('Are you sure to delete the navbar?')) {
-              elemObj.type = 'deleted';
-            }
-          });
-
           scope.getClasses = function () {
             return `${scope.currentColor} ${scope.currentShade} ${isSelected ? 'selected' : ''}`;
           }
 
           scope.delete = function(){
-            if(confirm('Are you sure to delete navbar?')) {
+            if(confirm('Are you sure you want to delete the navbar?')) {
               elemObj.type = 'deleted';
               scope.$parent.$parent.duplicateNavbar = false;
             }
