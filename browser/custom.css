@@ -266,6 +266,10 @@
   cursor: pointer;
 }
 
+#new-page {
+  margin-left: 20%;
+}
+
 @media (max-width: 600px) {
   #front-page h1 {
     font-size: 36px; !important

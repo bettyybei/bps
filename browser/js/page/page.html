@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 class="teal-text"><span class="black-text cursive">Project Page for: </span> {{projectName}} <a class="black-text" title="Edit Project Name" ng-click="openProjName()" id="edit-name"><i class="material-icons">create</i></a></h2>
+  <h2 class="teal-text"><span class="black-text cursive">Name:</span> {{projectName}} <a class="black-text" title="Edit Project Name" ng-click="openProjName()" id="edit-name"><i class="material-icons">create</i></a></h2>
 
   <div id="myModal" class="modal float_center">
     <div class="modal-content">
@@ -15,8 +15,9 @@
 
     </div>
   </div>
-  <br>
-  <button class="btn waves-effect waves-light" ng-click="addPage()"><i class="material-icons right">add_circle_outline</i>New Page</button>
+
+  <button class="btn waves-effect waves-light" ng-click="addPage()" id="new-page"><i class="material-icons right">add_circle_outline</i>New Page</button>
+  <br><br>
   <table class="highlight">
     <thead>
       <tr>
