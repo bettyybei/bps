@@ -83,7 +83,7 @@ app.config(function ($compileProvider,$stateProvider) {
     });
 });
 
-app.controller('RenderCodeCtrl', function($scope,$stateParams,$window,templateCode,RenderCodeFactory){
+app.controller('RenderCodeCtrl', function($scope,$stateParams,$window,templateCode){
     $scope.templates = templateCode
 
 
