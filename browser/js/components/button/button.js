@@ -17,7 +17,8 @@ app.directive('newButton', ['ButtonFactory',function (ButtonFactory) {
           scope.currentColor = elemObj.color;
           scope.currentShade = elemObj.shade;
 
-/*          ButtonFactory.getAllPages(scope.$parent.$parent.elements[0].pageId)
+/*        Dropdown code... doesn't work
+           ButtonFactory.getAllPages(scope.$parent.$parent.elements[0].pageId)
             .then(function(allPages){
               scope.pages = allPages;
               angular.element(elem.find('.dropdown-button')[0]).dropdown({

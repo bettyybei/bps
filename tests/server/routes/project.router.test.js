@@ -17,9 +17,8 @@ describe('Projects route', function(){
 	beforeEach('Create app', function(){
 		app = require('../../../server/app')(db);
         Project = db.model('project');
-        User = db.model('user')
-        agent = supertest.agent(app)
-        // console.log('agent', agent)
+        User = db.model('user');
+        agent = supertest.agent(app);
 	})
 
 	var projectInfo = {
@@ -60,7 +59,7 @@ describe('Projects route', function(){
 	describe('api/projects', function(){
 
 		it('Get all projects', function(done){
-			
+
 			agent.get('/api/projects')
 			.end(function(err,res){
 				if(err) return done(err);
@@ -69,6 +68,6 @@ describe('Projects route', function(){
 				done();
 			})
 		})
-		
+
 	})
 })

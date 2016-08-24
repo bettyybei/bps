@@ -19,7 +19,6 @@ router.get('/:id', function(req,res,next){
 router.post('/:id', function(req,res,next){
 	return Element.create(req.body)
 	.then(function(element){
-		console.log('----',req.params.id)
 		element.setPage(req.params.id)
 		res.json(element);
 	})
