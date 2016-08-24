@@ -59,7 +59,7 @@ app.config(function ($compileProvider,$stateProvider) {
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
     </head>
-    <body class="${res[0].bgcolor} ${res[0].bgshade}">`;
+    <body class="${page.bgcolor} ${page.bgshade}">`;
 
                         return PageFactory.getAllElements(res[0].id,page.id)
                         .then(function(elements){
@@ -86,42 +86,20 @@ app.config(function ($compileProvider,$stateProvider) {
 
 app.controller('RenderCodeCtrl', function($scope,$stateParams,$window,templateCode,RenderCodeFactory){
     $scope.templates = templateCode
-    //generate html file
-    // var blob = new Blob([ templateCode[0] ], { type : 'html/HTML' });
-    // console.log('123',blob)
-    var arr =[];
 
-
-    for(var i=0; i<templateCode.length; i++){
-        var blob = new Blob([ templateCode[i] ], { type : 'html/HTML' });
-        var url = $window.URL || $window.webkitURL;
-        $scope.url = url.createObjectURL(blob);
-        arr.push($scope.url)
-    }
-    console.log(arr)
-
-    // function callBack(){
-    //     $scope.zip = zip;
-    // }
-
-    // zip.createWriter(new zip.BlobWriter("application/zip"), function(zipWriter) {
-    //     arr.forEach(function(blob){
-    //         zipWriter.add('1', new zip.BlobReader(blob), function() {
-    //             // close the writer and calls callback function
-    //             zipWriter.close(callback);
-    //         });
-    //     })
-    // })
 
 
     $scope.download = function(){
-        RenderCodeFactory.zip(templateCode)
-        .then(function(res){
-            console.log('123123',res)
-            $scope.urltem = res;
+       // RenderCodeFactory.zip(templateCode)
+        var zip = new JSZip();
+        var count=0;
+        templateCode.forEach(function(template){
+           zip.file(count+".html", template)
+           count ++;
         })
-
-       // addFiles(arr)
+        zip.generateAsync({type:"base64"}).then(function (base64) {
+            location.href="data:application/zip;base64," + base64;
+        })
     }
 
 

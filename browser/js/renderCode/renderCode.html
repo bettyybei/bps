@@ -1,9 +1,7 @@
 <div class="container">
   <h3>Export Your Website</h3>
-  <div ng-repeat='template in templates'>
-  <a class="btn blue waves-effect waves-light" ng-click='download()' ng-href='{{ urltem }}'>download file<i class="material-icons right">file_download</i></a>
+  <a class="btn blue waves-effect waves-light" ng-click='download()' >download file<i class="material-icons right">file_download</i></a>
   <a class="btn green waves-effect waves-light" id="copy-button" data-clipboard-text="{{template}}">Copy to clipboard<i class="material-icons right">content_paste</i></a>
 
-  <div class="codeblock"> <pre><code>{{ template }}</code></pre></div>
-  </div>
+  <div ng-repeat='template in templates' class="codeblock"> <pre><code>{{ template }}</code></pre></div>
 </div>
