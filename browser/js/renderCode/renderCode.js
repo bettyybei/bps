@@ -25,7 +25,7 @@ app.config(function ($compileProvider,$stateProvider) {
         <img src="${element.url}" style="position: absolute; height: ${element.height}px; width:${element.width}px; top: ${element.top}px; left: ${element.left}px;">`;
                     } else if (element.type==='logo') {
                         return `
-        <img src="https://jlau-bucket-1.s3.amazonaws.com/uploads/topic/image/42/fullstack.png" style="position: absolute; height: ${element.height}px; width:${element.width}px; top: ${element.top}px; left: ${element.left}px;">`;
+        <img src="https://s9.postimg.org/7o47uj1lr/paletro2.png" style="position: absolute; height: ${element.height}px; width:${element.width}px; top: ${element.top}px; left: ${element.left}px;">`;
                     } else if (element.type==='navbar') {
                         return `
         <nav class="${element.color} ${element.shade}">
@@ -90,12 +90,12 @@ app.controller('RenderCodeCtrl', function($scope,$stateParams,$window,templateCo
     // var blob = new Blob([ templateCode[0] ], { type : 'html/HTML' });
     // console.log('123',blob)
     var arr =[];
-   
+
 
     for(var i=0; i<templateCode.length; i++){
         var blob = new Blob([ templateCode[i] ], { type : 'html/HTML' });
         var url = $window.URL || $window.webkitURL;
-        $scope.url = url.createObjectURL(blob); 
+        $scope.url = url.createObjectURL(blob);
         arr.push($scope.url)
     }
     console.log(arr)
@@ -112,7 +112,7 @@ app.controller('RenderCodeCtrl', function($scope,$stateParams,$window,templateCo
     //         });
     //     })
     // })
-    
+
 
     $scope.download = function(){
         RenderCodeFactory.zip(templateCode)
@@ -120,12 +120,12 @@ app.controller('RenderCodeCtrl', function($scope,$stateParams,$window,templateCo
             console.log('123123',res)
             $scope.urltem = res;
         })
-        
+
        // addFiles(arr)
     }
 
 
-    
+
 
     var clipboard;
     (function(){

@@ -9,15 +9,14 @@ app.factory('PageFactory', function($http){
 		})
 	}
 
+	PageFactory.create = function(id, page){
+    return $http.post('/api/project/'+id+'/create', page)
+    .then(function(res){
+      return res.data;
+    })
+  }
 
-	PageFactory.create = function(id,page){
-	    return $http.post('/api/project/'+id+'/create', page)
-	    .then(function(res){
-	      return res.data;
-	    })
-    }
-
-    PageFactory.deletePage = function(projectId,pageId) {
+  PageFactory.deletePage = function(projectId, pageId) {
 	    return $http.delete('/api/project/'+projectId+'/page/'+pageId)
 	}
 
@@ -25,14 +24,14 @@ app.factory('PageFactory', function($http){
 	    return $http.delete('/api/elements/'+pageId)
 	}
 
-	PageFactory.getAllElements = function (projectId,pageId) {
+	PageFactory.getAllElements = function (projectId, pageId) {
 	    return $http.get('/api/project/'+projectId+'/page/'+pageId)
 	    .then(function(res){
 	      return res.data;
 	    })
 	}
 
-	PageFactory.updateName = function (projectId,pageId, name) {
+	PageFactory.updateName = function (projectId, pageId, name) {
 	    return $http.put('/api/project/'+projectId+'/page/'+pageId, {name: name})
 	    .then(function (res) {
 	      return res.data;

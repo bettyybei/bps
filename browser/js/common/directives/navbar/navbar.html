@@ -1,8 +1,10 @@
 <div class="navbar-fixed">
   <nav class="orange lighten-3">
     <div class="nav-wrapper container">
-      <a ui-sref="home" class="brand-logo">BPS</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <img ui-sref="home" src="img/paletro.png" id="paletro-logo">
+      <a ui-sref="home" class="brand-logo cursive">Paletro</a>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
         <li><a ui-sref="home">Home</a></li>
         <li><a ui-sref="about">About</a></li>
         <li><a ng-show="user" ui-sref='projects'>Projects</a></li>
@@ -10,7 +12,17 @@
         <li><a ng-show="!user" ui-sref="register" class="waves-effect waves-light btn">Sign Up</a></li>
         <li><a ng-show="user" class="blue-text text-darken-3">Welcome, {{ user.firstName }}!</a></li>
         <li><a ng-show="user" ng-click="logout()" class="btn login-button btn-space">Logout </a></li>
-        <li><div id='trash' style='width:60px; height:60px;'><img src='https://lh3.ggpht.com/jJtiZRUpKvUSSoQRAM49mCiLa7Ug1jNJWtMXq8ru3rVuALhguxmxHP6p0otNkDYs1GE=w300' style='width:60px; height:60px; margin-left: 100px'></div>
+      </ul>
+      <ul id="nav-mobile" class="side-nav center-align">
+        <br>
+        <li><img src="img/paletro.png" id="sidebar-logo"><span class="black-text brand-logo cursive">Paletro</span></li>
+        <li><a ui-sref="home" ng-click="closeSideNav()">Home</a></li>
+        <li><a ui-sref="about" ng-click="closeSideNav()">About</a></li>
+        <li><a ng-show="user" ui-sref="projects" ng-click="closeSideNav()">Projects</a></li>
+        <li><a ng-show="!user" ui-sref="login" class="waves-effect waves-light btn" ng-click="closeSideNav()">Login</a></li>
+        <li><a ng-show="!user" ui-sref="register" class="waves-effect waves-light btn" ng-click="closeSideNav()">Sign Up</a></li>
+        <li><a ng-show="user" class="blue-text text-darken-3">Welcome, {{ user.firstName }}!</a></li>
+        <li><a ng-show="user" ng-click="logout()" class="btn login-button btn-space">Logout </a></li>
       </ul>
     </div>
   </nav>

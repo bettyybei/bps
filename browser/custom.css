@@ -1,6 +1,9 @@
+.cursive {
+  font-family: 'Cedarville Cursive', cursive;
+}
+
 /*Homepage CSS*/
 .block {
-  height: 91.5vh;
   margin: 0;
 }
 
@@ -9,13 +12,35 @@
   text-align: center;
 }
 
-.block h1 {
+.boxedimage {
+  width: 100%;
+  height: 100%;
+  cursor: default;
+}
+
+#front-text {
+  z-index: 2px;
+  position: absolute;
+  top:0; bottom:0; left:0; right:0;
+}
+
+#front-page {
+  background-image: url('img/home.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 0;
+  padding-top: 58.6877%;
+  position: relative;
+}
+
+#front-page h1 {
   margin: 0;
-  padding-top: 20%;
+  padding-top: 27%;
   padding-bottom: 20px;
 }
 
-.block button {
+#front-page button {
   border-radius: 40px;
   -moz-border-radius: 40px;
   -webkit-border-radius: 40px;
@@ -23,6 +48,16 @@
   margin: 0 4px;
 }
 
+#ex-projects {
+  padding: 80px 0;
+}
+
+#sidebar-logo {
+  height: 50px;
+  width: 50px;
+}
+
+/*Editor Page CSS*/
 #editor {
   height: 500vh;
 }
@@ -31,31 +66,38 @@
   margin-left: 30px;
 }
 
-#edit-button {
-  top: 40%;
-  left: 8px;
-  position: fixed;
-}
-
 #description {
   padding-top: 8px;
   line-height: 24px;
 }
 
-/*Color Picker CSS*/
+/*Buttons CSS*/
+#edit-button {
+  top: 40%;
+  left: 8px;
+  position: fixed;
+}
+#save-button {
+  top: 50%;
+  left: 8px;
+  position: fixed;
+}
 #color-picker {
-  top: 20%;
+  top: 35%;
   right: 24px;
 }
 #shade-picker {
-  top: 40%;
+  top: 25%;
   right: 24px;
 }
 #grid-lines {
-  top: 50%;
+  top: 55%;
   right: 24px;
 }
-
+#trash-can {
+  top: 80%;
+  right: 24px;
+}
 /*Components CSS*/
 #user-navbar {
   top: 65px;
@@ -64,21 +106,27 @@
 }
 
 .selected {
-  border: 1px solid blue;
+  border: 3px dashed blue;
   /* glow*/
-  -webkit-box-shadow: 0px 0px 4px blue;
-     -moz-box-shadow: 0px 0px 4px blue;
-          box-shadow: 0px 0px 4px blue;
+  -webkit-box-shadow: 0px 0px 6px blue;
+     -moz-box-shadow: 0px 0px 6px blue;
+          box-shadow: 0px 0px 6px blue;
 }
 
 .absolute {
   position: absolute; !important
 }
-/*
-.vertical-align {
-  padding-top: 50%;
-  display: block;
-}*/
+
+.disclaimer {
+  font-size: 11px;
+  padding-bottom: 2%;
+}
+
+#paletro-logo {
+  height: 77%;
+  padding-top: 5px;
+  cursor: pointer;
+}
 
 
 /*Misc*/
@@ -97,6 +145,10 @@
 .codeblock {
   background-color: #e6e6e6;
   margin-top: 30px;
+}
+
+.oauth {
+  width: 300px;
 }
 
 /*Preview Iframe*/
@@ -130,11 +182,6 @@
   left:0;
   width:320px;
   height:192px;
-}
-
-
-.oauth {
-  width: 300px;
 }
 
 /*Grid CSS*/
@@ -193,4 +240,21 @@
     cursor: pointer;
 }
 
+/*About Page CSS*/
+.button-info {
+  margin-top: 15px;
+  margin-left: 7px;
+  padding: 0 auto;
+  text-align: center;
+  display: inline-block;
+}
 
+#first-button {
+  margin-left: 30px;
+}
+
+@media (max-width: 600px) {
+  #front-page h1 {
+    font-size: 36px; !important
+  }
+}

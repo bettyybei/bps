@@ -7,16 +7,9 @@ var Project = require('./models/project');
 var Page = require('./models/page');
 var Element = require('./models/element');
 
-
-
 User.hasMany(Project);
-Project.belongsTo(User)
+Project.belongsTo(User);
 Project.hasMany(Page);
 Page.belongsTo(Project);
 Page.hasMany(Element);
-Element.belongsTo(Page)
-
-// db.sync()
-// .then(function(){
-// 	console.log('sync success')
-// })
+Element.belongsTo(Page);

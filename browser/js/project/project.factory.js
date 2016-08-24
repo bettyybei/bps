@@ -29,7 +29,7 @@ app.factory('ProjectFactory', function($http) {
       return res.data;
     })
   }
- 
+
 
   project.deleteProject = function(projectId) {
     return $http.delete('/api/projects/' + projectId)
@@ -45,7 +45,7 @@ app.factory('ProjectFactory', function($http) {
     })
   }
 
-  
+
 
   return project;
 })

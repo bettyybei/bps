@@ -48,12 +48,10 @@ app.controller('EditorController', function ($scope, $rootScope, EditorFactory, 
     modal.style.display = "block";
   }
 
-  PageFactory.getAllPages($stateParams.projectId)
-  .then(function(pages){
-    for(var i =0; i<pages.length; i++){
-      if(pages[i].id === thePage.id && pages[i].name === "Untitled Page") displayModal();
-    }
-  })
+  PageFactory.getAllElements($stateParams.projectId, thePage.id)
+  .then(function(page){
+    if(page.name === "Untitled Page") displayModal();
+  });
 
   $scope.sendPage = function() {
     PageFactory.updateName($stateParams.projectId, thePage.id, $scope.inputTitle)
@@ -72,7 +70,8 @@ app.controller('EditorController', function ($scope, $rootScope, EditorFactory, 
   $scope.toggleGrid = function () {
     if (hasGrid) {
       removeGrid()
-      $rootScope.$broadcast('changeGrid', 1)
+      $rootScope.$broadcast('changeGrid', 1);
+      $scope.dimension = 1;
       hasGrid = false;
     }
     else {
@@ -119,7 +118,7 @@ app.controller('EditorController', function ($scope, $rootScope, EditorFactory, 
 
   $scope.addComponent = function (type) {
     if (type==='button') {
-      $scope.elements.push({type: type, projectId: thePage.id, color: 'blue', shade: 'original', top: 100, left: 400, width: 200, height: 100});
+      $scope.elements.push({type: type, projectId: theProject.id, color: 'blue', shade: 'original', top: 100, left: 400, width: 170, height: 40});
     }
     else if (type==='logo') {
       $scope.elements.push({type: type, projectId: thePage.id, top: 100, left: 400, width: 100, height: 100});
@@ -157,10 +156,9 @@ app.controller('EditorController', function ($scope, $rootScope, EditorFactory, 
     })
   }
 
-  $scope.finished = function () {
+  $scope.saveProject = function () {
     PageFactory.updateBgColor($stateParams.projectId, thePage.id, $scope.currentBgColor, $scope.currentBgShade)
     .then(function () {
-
      return PageFactory.deleteAllElements(thePage.id);
     })
     .then(function () {
