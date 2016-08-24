@@ -55,7 +55,7 @@ app.config(function ($compileProvider,$stateProvider) {
 <html lang="en">
     <head>
         <base href="/" />
-        <title>Page Title Here</title>
+        <title>${page.name}</title>
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
