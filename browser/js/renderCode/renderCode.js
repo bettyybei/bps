@@ -101,9 +101,6 @@ app.controller('RenderCodeCtrl', function($scope,$stateParams,$window,templateCo
         })
     }
 
-
-
-
     var clipboard;
     (function(){
         clipboard = new Clipboard('#copy-button');

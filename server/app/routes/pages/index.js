@@ -9,7 +9,8 @@ router.get('/:projectId/page', function(req,res,next){
 	Page.findAll({
 		where: {
 			projectId: req.params.projectId
-		}
+		},
+		order: '"updatedAt" DESC'
 	})
 	.then(function(pages){
 		res.send(pages);
@@ -41,7 +42,7 @@ router.get('/:projectId/page/:id', function(req,res,next){
 })
 
 router.put('/:projectId/page/:id', function(req,res,next){
-	return Page.update(req.body, { 
+	return Page.update(req.body, {
 		where: {
 			id: req.params.id,
 			projectId: req.params.projectId
@@ -54,7 +55,7 @@ router.put('/:projectId/page/:id', function(req,res,next){
 
 router.delete('/:projectId/page/:id', function(req,res,next){
 	return Page.findOne({
-		where: { 
+		where: {
 			id: req.params.id,
 			projectId: req.params.projectId
 		}

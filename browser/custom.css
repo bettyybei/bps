@@ -144,7 +144,6 @@
 
 .codeblock {
   background-color: #e6e6e6;
-  margin-top: 30px;
 }
 
 .oauth {
@@ -264,6 +263,10 @@
 
 #edit-name {
   cursor: pointer;
+}
+
+#new-page {
+  margin-left: 20%;
 }
 
 @media (max-width: 600px) {
