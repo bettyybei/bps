@@ -119,15 +119,3 @@ app.controller('RenderCodeCtrl', function($scope,$stateParams,$window,templateCo
     })
 })
 
-app.factory('RenderCodeFactory', function($http){
-    var RenderCodeFactory = {};
-
-    RenderCodeFactory.zip = function(templateCode){
-        return $http.post('/api/projects/zipfile',templateCode)
-        .then(function(res){
-            console.log('123',res)
-            return res.data;
-        })
-    }
-    return RenderCodeFactory;
-})

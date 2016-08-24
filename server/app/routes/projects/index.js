@@ -5,11 +5,6 @@ var db = require('../../../db')
 var Project = db.model('project')
 var Page = db.model('page')
 var Element = db.model('element')
-var JSZip = require('jszip')
-var fs = require("fs");
-var Promise = require("bluebird");
-
-
 
 router.get('/', function(req,res,next){
 	Project.findAll({
@@ -32,26 +27,6 @@ router.post('/create', function(req,res,next){
 		res.json(project);
 	})
 	.catch(next);
-})
-
-router.post('/zipfile', function(req,res,next){
-	
-	console.log('123123',req.body)
-
-	var templates = req.body.map(function(template){
-		return new Promise(function(resolve, reject){
-			console.log('tem',template)
-			fs.writeFile('message.txt', template, 'utf8', function(err, file){
-        		if (err) reject(err);
-    			else resolve(file);
-     		});
-		})
-	});
-	Promise.all(templates)
-	.then(function(res){
-		console.log('123',res)
-	})
-
 })
 
 router.get('/:id', function(req,res,next){
