@@ -262,6 +262,10 @@
   cursor: pointer;
 }
 
+#edit-name {
+  cursor: pointer;
+}
+
 @media (max-width: 600px) {
   #front-page h1 {
     font-size: 36px; !important

@@ -20,18 +20,14 @@ app.config(function ($stateProvider) {
 
 
 app.controller('EditorController', function ($scope, $rootScope, EditorFactory, ProjectFactory, thePage, $state,PageFactory,$stateParams) {
+  $scope.colors = ['black', 'brown', 'red', 'deep-orange', 'yellow', 'light-green', 'light-blue', 'indigo', 'purple', 'white', 'grey', 'pink', 'orange', 'lime', 'green', 'teal', 'blue', 'deep-purple'];
+  $scope.shades = ['darken-4', 'darken-3', 'darken-2', 'original', 'lighten-1', 'lighten-2', 'lighten-3', 'lighten-4', 'lighten-5'];
   $(".button-collapse").sideNav();
   $('.collapsible').collapsible();
   $scope.elements = thePage.elements;
   $scope.pageName = thePage.name;
   $scope.currentBgColor = thePage.bgcolor;
   $scope.currentBgShade = thePage.bgshade;
-
-
-  $scope.colors = ['black', 'brown', 'red', 'deep-orange', 'yellow', 'light-green', 'light-blue', 'indigo', 'purple', 'white', 'grey', 'pink', 'orange', 'lime', 'green', 'teal', 'blue', 'deep-purple'];
-
-  $scope.shades = ['darken-4', 'darken-3', 'darken-2', 'original', 'lighten-1', 'lighten-2', 'lighten-3', 'lighten-4', 'lighten-5'];
-
 
   //MODAL CODE
   var modal = document.getElementById('myModal1');
@@ -48,11 +44,6 @@ app.controller('EditorController', function ($scope, $rootScope, EditorFactory, 
     modal.style.display = "block";
   }
 
-  PageFactory.getAllElements($stateParams.projectId, thePage.id)
-  .then(function(page){
-    if(page[0].name === "Untitled Page") displayModal();
-  });
-
   $scope.sendPage = function() {
     PageFactory.updateName($stateParams.projectId, thePage.id, $scope.inputTitle)
     .then(function(){
@@ -60,6 +51,8 @@ app.controller('EditorController', function ($scope, $rootScope, EditorFactory, 
       modal.style.display = "none";
     })
   }
+
+  if(thePage.name === "Untitled Page") displayModal();
   //END MODAL CODE
 
 
@@ -149,7 +142,7 @@ app.controller('EditorController', function ($scope, $rootScope, EditorFactory, 
   $scope.changePageName = function () {
     PageFactory.updateName($stateParams.projectId, thePage.id, $scope.pageName)
     .then(function () {
-      Materialize.toast('Success! Your project name is updated.', 4000, 'teal darken-2');
+      Materialize.toast('Success! Your page name is updated.', 4000, 'teal darken-2');
     })
     .catch(function () {
       Materialize.toast('Uh Oh! There was an error.', 4000, 'red darken-3');

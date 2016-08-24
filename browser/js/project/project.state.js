@@ -15,9 +15,7 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('ProjectController', function ($scope, AllProjects, ProjectFactory, $state) {
-
 	$scope.projects = AllProjects;
-  console.log("projects", $scope.projects);
 
   $scope.addProject = function(){
     ProjectFactory.create()

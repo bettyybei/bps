@@ -48,7 +48,7 @@ app.config(function ($compileProvider,$stateProvider) {
                 var all;
                 return ProjectFactory.getProject($stateParams.id)
                 .then(function(res){
-                    all = res[0].pages.map(function(page){
+                    all = res.pages.map(function(page){
                     var template = `<!DOCTYPE html>
 <html lang="en">
     <head>
@@ -59,9 +59,9 @@ app.config(function ($compileProvider,$stateProvider) {
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
     </head>
-    <body class="${res[0].bgcolor} ${res[0].bgshade}">`;
+    <body class="${res.bgcolor} ${res.bgshade}">`;
 
-                        return PageFactory.getAllElements(res[0].id,page.id)
+                        return PageFactory.getAllElements(res.id,page.id)
                         .then(function(elements){
                             elements[0].elements.forEach(function(element){
                                 template += renderCode(element);

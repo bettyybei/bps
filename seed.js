@@ -70,13 +70,13 @@ var seedProjects = function(){
 var seedPages = function(){
     var pages = [
         {
-            projectId: '1',
+            projectId: '4',
             name: 'Obama\'s 1st Page',
             bgcolor: 'light-blue',
             bgshade: 'lighten-4'
         },
         {
-            projectId: '1',
+            projectId: '4',
             name: 'Obama\'s 2nd Project',
             bgcolor: 'light-blue',
             bgshade: 'lighten-4'

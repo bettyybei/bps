@@ -11,5 +11,12 @@ module.exports = db.define('page',{
     },
     bgshade: {
       type: Sequelize.STRING
+    },
+}, {
+    getterMethods: {
+      lastUpdated: function () {
+        var dateStr = this.updatedAt.toString();
+        return dateStr.slice(0,3) + ',' + dateStr.slice(3, 15);
+      }
     }
-}); 
+});
