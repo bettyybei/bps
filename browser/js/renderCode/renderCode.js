@@ -49,7 +49,9 @@ app.config(function ($compileProvider,$stateProvider) {
                 return ProjectFactory.getProject($stateParams.id)
                 .then(function(res){
                     all = res.pages.map(function(page){
-                    var template = `<!DOCTYPE html>
+                    var obj ={};
+                    obj.pageName = page.name;
+                    obj.template = `<!DOCTYPE html>
 <html lang="en">
     <head>
         <base href="/" />
@@ -63,12 +65,12 @@ app.config(function ($compileProvider,$stateProvider) {
                         return PageFactory.getAllElements(res.id,page.id)
                         .then(function(elements){
                             elements[0].elements.forEach(function(element){
-                                template += renderCode(element);
+                                obj.template += renderCode(element);
                             })
-                    template+=`
+                    obj.template+=`
     </body>
 </html>`;
-                    allTemplates.push(template)
+                    allTemplates.push(obj)
                         })
                     })
                 })
@@ -86,14 +88,12 @@ app.config(function ($compileProvider,$stateProvider) {
 app.controller('RenderCodeCtrl', function($scope,$stateParams,$window,templateCode){
     $scope.templates = templateCode
 
-
-
     $scope.download = function(){
        // RenderCodeFactory.zip(templateCode)
         var zip = new JSZip();
         var count=0;
         templateCode.forEach(function(template){
-           zip.file(count+".html", template)
+           zip.file(template.pageName+".html", template.template)
            count ++;
         })
         zip.generateAsync({type:"base64"}).then(function (base64) {
