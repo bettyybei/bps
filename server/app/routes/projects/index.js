@@ -14,7 +14,8 @@ router.get('/', function(req,res,next){
 		where: {
 			userId: req.user.id
 		},
-		order: '"updatedAt" DESC'
+		order: '"updatedAt" DESC',
+		include: [Page]
 	})
 	.then(function(projects){
 		res.send(projects);
@@ -49,7 +50,7 @@ router.post('/zipfile', function(req,res,next){
 		//console.log('content123',content)
 		res.send(content);
 	})
-	
+
 })
 
 router.get('/:id', function(req,res,next){

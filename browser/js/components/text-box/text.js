@@ -1,14 +1,17 @@
 app.directive('textBox', function () {
     return {
         restrict: 'E',
+        scope: {
+          index: '=',
+          elements: '=',
+          dimension: '='
+        },
         templateUrl: 'js/components/text-box/text.html',
         link: function (scope, elem, attr) {
-          let ind = scope.$index;
-          let elemObj = scope.$parent.elements[ind];
+          let elemObj = scope.elements[scope.index];
           scope.initialWidth = elemObj.width;
           scope.initialHeight = elemObj.height;
-          scope.initialTop = elemObj.top;
-          scope.renderTop = scope.initialTop;
+          scope.initialTop = elemObj.top + 64;
           scope.initialLeft = elemObj.left;
           scope.content = elemObj.content;
           scope.currentColor = elemObj.color;
@@ -24,23 +27,27 @@ app.directive('textBox', function () {
             textDiv.draggable("option", "grid", [dimension,dimension]);
           })
 
+          let trashCan = $("#trash-can");
           textDiv.draggable({
-            grid: [scope.$parent.dimension, scope.$parent.dimension],
+            grid: [scope.dimension, scope.dimension],
             cancel: 'text',
-            stop: function (event, obj) {
-              console.log('stopped dragging textbox', ind);
-              elemObj.top = obj.position.top;
+            start: function(event, obj) {
+              trashCan.bind("mouseenter", function(){
+                if(confirm('Are you sure you want to delete this '+ elemObj.type+'?')){
+                  elemObj.type = 'deleted';
+                  scope.$apply();
+                }
+              });
+            },
+            stop: function(event, obj) {
+              elemObj.top = obj.position.top - 64;
               elemObj.left = obj.position.left;
-              if(elemObj.top<-45&&elemObj.left>1070){
-                if(confirm('Are you sure you want to delete this '+ elemObj.type+'?')) elemObj.type = 'deleted';
-              }
-              scope.$apply();
-
+              trashCan.unbind("mouseenter");
             }
           });
+
           textDiv.resizable({
             stop: function (event, obj) {
-              console.log('stopped resizing textbox', ind);
               elemObj.width = obj.size.width;
               elemObj.height = obj.size.height;
             }
@@ -51,13 +58,10 @@ app.directive('textBox', function () {
           for (var key in children) {
             if (children[key].contentEditable) children[key].contentEditable = false;
           }
+          textDiv[0].contentEditable = true;
 
-          scope.editText = function(){
-            textDiv[0].contentEditable = true;
-          }
-
-          scope.uneditable = function(){
-            textDiv[0].contentEditable = false;
+          scope.focus = function () {
+            textDiv.focus();
           }
 
           let isSelected = false;

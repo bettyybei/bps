@@ -3,7 +3,7 @@
   <!-- Project Name Model -->
   <div id="myModal1" class="modal float_center">
     <div class="modal-content">
-      <span class="close1">x</span>
+      <span class="close">x</span>
 
       <form name="pageForm" ng-submit="sendPage()">
         <h3>Name Your Page</h3>
@@ -71,49 +71,51 @@
           </div>
         </li>
 
-        <li><button class="btn waves-effect waves-teal" id="finish-button" ng-click="finished()">Save Project <i class="material-icons right">send</i></button></li>
+        <li><button class="btn waves-effect waves-teal" id="finish-button" ng-click="saveProject()">Save Project <i class="material-icons right">send</i></button></li>
 
       </ul>
     </li>
 
   </ul>
-  <a data-activates="slide-out" class="button-collapse btn-floating btn-large waves-effect waves-light teal" id="edit-button"><i class="material-icons">label_outline</i></a>
+  <a data-activates="slide-out" class="button-collapse btn-floating btn-large waves-effect waves-light teal" id="edit-button" title="Open the sidebar"><i class="material-icons">label_outline</i></a>
   <!-- End Side Nav -->
+  <a class="btn-floating btn-large orange darken-1" ng-click="saveProject()" id="save-button" title="Save your project"><i class="material-icons">save</i></a>
 
   <!-- Right Buttons -->
+  <div class="fixed-action-btn horizontal" id="shade-picker">
+    <a class="btn-floating btn-large {{selectedColor}}"><i class="material-icons">iso</i></a>
+    <ul>
+      <li ng-repeat="shade in shades"><a ng-click="setShade(shade)" class="btn-floating {{selectedColor}} {{shade}}"><i class="material-icons">crop_square</i></a></li>
+    </ul>
+  </div>
+
   <div class="fixed-action-btn horizontal" id="color-picker">
-    <a class="btn-floating btn-large red">
-      <i class="material-icons">color_lens</i>
-    </a>
+    <a class="btn-floating btn-large red"><i class="material-icons">color_lens</i></a>
     <ul>
       <li ng-repeat="color in colors"><a ng-click="setColor(color)" class="btn-floating {{color}} {{selectedShade}}"><i class="material-icons">brush</i></a></li>
     </ul>
   </div>
 
-  <div class="fixed-action-btn horizontal" id="shade-picker">
-    <a class="btn-floating btn-large {{selectedColor}}">
-      <i class="material-icons">iso</i>
-    </a>
-    <ul>
-      <li ng-repeat="shade in shades"><a ng-click="setShade(shade)" class="btn-floating {{selectedColor}} {{shade}}"><i class="material-icons">crop_square</i></a></li>
-    </ul>
-  </div>
   <div class="fixed-action-btn horizontal" id="grid-lines">
-    <a class="btn-floating btn-large purple" ng-click="toggleGrid()">
-      <i class="material-icons">border_all</i>
+    <a class="btn-floating btn-large purple" ng-click="toggleGrid()" title="Toggle gridlines"><i class="material-icons">border_all</i></a>
+  </div>
+
+  <div class="fixed-action-btn horizontal" id="trash-can">
+    <a class="btn-floating btn-large green" title="Drag items here to delete">
+      <i class="material-icons">delete_forever</i>
     </a>
   </div>
 
-  <!-- Canvas -->
+<!-- Canvas -->
   <div id="canvas">
     <div ng-repeat="element in elements">
-      <user-navbar ng-show="element.type === 'navbar'"></user-navbar>
-      <fullstack-logo ng-show="element.type === 'logo'"></fullstack-logo>
-      <new-button ng-show="element.type === 'button'"></new-button>
-      <user-div ng-show="element.type === 'div'"></user-div>
-      <user-image class="absolute" ng-show="element.type === 'image'" image='element.url'></user-image>
-      <text-box ng-show="element.type === 'textbox'"></text-box>
-      <header ng-show="element.type === 'header'"></header>
+      <user-navbar elements="elements" index="$index" ng-show="element.type === 'navbar'"></user-navbar>
+      <fullstack-logo elements="elements" index="$index" dimension="dimension" ng-show="element.type === 'logo'"></fullstack-logo>
+      <new-button elements="elements" index="$index" dimension="dimension" ng-show="element.type === 'button'"></new-button>
+      <user-div elements="elements" index="$index" dimension="dimension" ng-show="element.type === 'div'"></user-div>
+      <user-image elements="elements" index="$index" dimension="dimension" class="absolute" ng-show="element.type === 'image'" image='element.url'></user-image>
+      <text-box elements="elements" index="$index" dimension="dimension" ng-show="element.type === 'textbox'"></text-box>
+      <header elements="elements" index="$index" dimension="dimension" ng-show="element.type === 'header'"></header>
     </div>
   </div>
 

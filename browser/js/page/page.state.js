@@ -9,13 +9,20 @@ app.config(function ($stateProvider) {
         		.then(function(pages){
         			return pages;
         		});
-        	}
+        	},
+            projectName: function(ProjectFactory, $stateParams) {
+                return ProjectFactory.getProject($stateParams.id)
+                .then(function(project) {
+                    return project[0].name;
+                })
+            }
         }
     });
 });
 
-app.controller('PageController', function($scope,AllPages,$stateParams,PageFactory,$state,ProjectFactory){
+app.controller('PageController', function($scope,AllPages, projectName, $stateParams,PageFactory,$state,ProjectFactory){
     $scope.pages = AllPages;
+    $scope.projectName = projectName;
 
     //MODAL CODE
     var modal = document.getElementById('myModal');
@@ -32,11 +39,10 @@ app.controller('PageController', function($scope,AllPages,$stateParams,PageFacto
         modal.style.display = "block";
     }
 
-    ProjectFactory.getProjects()
-    .then(function(projects){
-        for(var i =0; i<projects.length; i++){
-           if(projects[i].id == $stateParams.id && projects[i].name === "Untitled Project") displayModal();
-        }
+    ProjectFactory.getProject($stateParams.id)
+    .then(function(project){
+        console.log(project);
+        if(project[0].name === "Untitled Project") displayModal();
     })
 
     $scope.sendProject = function() {
@@ -46,7 +52,6 @@ app.controller('PageController', function($scope,AllPages,$stateParams,PageFacto
             modal.style.display = "none";
         })
     }
-
     //END MODAL CODE
 
     $scope.addPage = function(){
@@ -69,5 +74,5 @@ app.controller('PageController', function($scope,AllPages,$stateParams,PageFacto
         $state.go('editor', { pageId: input, projectId: $stateParams.id });
     }
 
-    
+
 })

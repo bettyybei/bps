@@ -9,5 +9,9 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('AboutController', function ($scope) {
-
+  $(document).ready(function(){
+    $('.collapsible').collapsible({
+      accordion : false
+    });
+  });
 });

@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>Welcome to Your Project Page</h2>
+  <h2 class="teal-text"><span class="black-text cursive">Project Page for: </span> {{projectName}}</h2>
 
   <div id="myModal" class="modal float_center">
     <div class="modal-content">
@@ -15,7 +15,7 @@
 
     </div>
   </div>
-  <br><br>
+  <br>
   <button class="btn waves-effect waves-light" ng-click="addPage()"><i class="material-icons right">add_circle_outline</i>New Page</button>
   <table class="highlight">
     <thead>
@@ -29,7 +29,7 @@
       <tr ng-repeat="page in pages">
         <td>{{page.name}}</td>
         <td><a class="btn-floating" ng-click="loadPage(page.id)"><i class="material-icons">create</i></a><a class="btn-floating red btn-spacing" ng-click="deletePage(page.id)"><i class="material-icons">delete_forever</i></a></td>
-        <td>
+        <td ng-click="loadPage(page.id)">
           <div id="IframeWrapper">
             <iframe ng-src="{{'project/'+page.projectId+'/page/'+page.id}}" id='preview'></iframe>
             <div id="iframeBlocker"></div>

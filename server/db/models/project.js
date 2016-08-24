@@ -9,7 +9,7 @@ module.exports = db.define('project',{
 }, {
   getterMethods: {
     lastUpdated: function () {
-      let dateStr = this.updatedAt.toString();
+      var dateStr = this.updatedAt.toString();
       return dateStr.slice(0,3) + ',' + dateStr.slice(3, 15);
     }
   }
