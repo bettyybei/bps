@@ -16,9 +16,10 @@ router.get('/:id', function(req,res,next){
 	.catch(next);
 })
 
-router.post('/', function(req,res,next){
+router.post('/:id', function(req,res,next){
 	return Element.create(req.body)
 	.then(function(element){
+		element.setPage(req.params.id)
 		res.json(element);
 	})
 	.catch(next);
@@ -35,7 +36,7 @@ router.put('/:id', function(req,res,next){
 router.delete('/:id', function(req,res,next){
 	return Element.findAll({
 		where:{
-			projectId: req.params.id
+			pageId: req.params.id
 		}
 	})
 	.then(function(elements){

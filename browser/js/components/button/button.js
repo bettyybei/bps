@@ -1,5 +1,5 @@
 
-app.directive('newButton', function () {
+app.directive('newButton', ['ButtonFactory',function (ButtonFactory) {
     return {
         restrict: 'E',
         scope: {
@@ -16,6 +16,23 @@ app.directive('newButton', function () {
           scope.initialLeft = elemObj.left;
           scope.currentColor = elemObj.color;
           scope.currentShade = elemObj.shade;
+
+/*        Dropdown code... doesn't work
+           ButtonFactory.getAllPages(scope.$parent.$parent.elements[0].pageId)
+            .then(function(allPages){
+              scope.pages = allPages;
+              angular.element(elem.find('.dropdown-button')[0]).dropdown({
+                inDuration: 300,
+                outDuration: 225,
+                constrain_width: false, // Does not change width of dropdown to that of the activator
+                // hover: true, Activate on hover
+                gutter: 0, // Spacing from edge
+                belowOrigin: true, // Displays dropdown below the button
+                alignment: 'left', // Displays dropdown with edge aligned to the left of button
+                stoppropagation: true
+              })
+            });
+*/
 
           scope.$on('changeGrid', function(event, dimension){
             elem.draggable("option", "grid", [dimension,dimension])
@@ -46,10 +63,14 @@ app.directive('newButton', function () {
             }
           });
 
+
+
           let isSelected = false;
           scope.toggleSelected = function () {
             isSelected = !isSelected;
           }
+
+          let pageSelect = false;
 
           scope.$on('colorChange', function(event, color){
             if (isSelected) {
@@ -66,8 +87,23 @@ app.directive('newButton', function () {
           });
 
           scope.getClasses = function () {
-            return `btn absolute ${scope.currentColor} ${scope.currentShade} ${isSelected ? 'selected' : ''}`;
+            return `dropdown-button btn absolute ${scope.currentColor} ${scope.currentShade} ${isSelected ? 'selected' : ''}`;
           }
+
         }
     };
-});
+}]);
+
+app.factory('ButtonFactory', function($http){
+
+  var ButtonFactory = {};
+
+  ButtonFactory.getAllPages = function(id){
+    return $http.get('/api/project/'+id+'/page')
+    .then(function(res){
+      return res.data;
+    })
+  }
+  return ButtonFactory;
+
+})

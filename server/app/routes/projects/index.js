@@ -3,6 +3,7 @@ var router = require('express').Router();
 module.exports = router;
 var db = require('../../../db')
 var Project = db.model('project')
+var Page = db.model('page')
 var Element = db.model('element')
 
 router.get('/', function(req,res,next){
@@ -10,7 +11,8 @@ router.get('/', function(req,res,next){
 		where: {
 			userId: req.user.id
 		},
-		order: '"updatedAt" DESC'
+		order: '"updatedAt" DESC',
+		include: [Page]
 	})
 	.then(function(projects){
 		res.send(projects);
@@ -33,7 +35,7 @@ router.get('/:id', function(req,res,next){
 			id: req.params.id,
 			userId: req.user.id
 		},
-		include: [Element]
+		include: [Page]
 	})
 	.then(function(project){
 		res.send(project);
@@ -50,11 +52,35 @@ router.put('/:id', function(req,res,next){
 })
 
 router.delete('/:id', function(req,res,next){
-	Project.destroy({
-		where: { id: req.params.id }
+	return Project.findById(req.params.id)
+	.then(function(project){
+		Page.findAll({
+			where:{
+				projectId: project.id
+			}
+		})
+		.then(function(pages){
+			pages.map(function(page){
+				Element.findAll({
+					where: {
+						pageId: page.id
+					}
+				})
+				.then(function(elements){
+					elements.forEach(function(element){
+						element.destroy();
+					})
+				})
+				.then(function(){
+					page.destroy();
+				})
+			})
+		})
+		.then(function(){
+			project.destroy();
+		})
 	})
 	.then(function(){
 		res.sendStatus(200);
 	})
-	.catch(next)
 })

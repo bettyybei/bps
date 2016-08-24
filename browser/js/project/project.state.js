@@ -15,7 +15,6 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('ProjectController', function ($scope, AllProjects, ProjectFactory, $state) {
-
 	$scope.projects = AllProjects;
 
   $scope.addProject = function(){
@@ -27,10 +26,7 @@ app.controller('ProjectController', function ($scope, AllProjects, ProjectFactor
 
 	$scope.deleteProject = function(id){
     if(confirm('Are you sure you want to delete this project? This cannot be undone.')){
-      ProjectFactory.deleteAllElements(id)
-      .then(function () {
-        return ProjectFactory.deleteById(id);
-      })
+      ProjectFactory.deleteProject(id)
   		.then(function () {
   			$state.reload();
   		});
@@ -38,7 +34,7 @@ app.controller('ProjectController', function ($scope, AllProjects, ProjectFactor
 	}
 
   $scope.loadProject = function(input) {
-    $state.go('editor', { id: input });
+    $state.go('pages', { id: input });
   }
 
   $scope.exportCode = function(input) {

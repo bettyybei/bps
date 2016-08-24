@@ -73,12 +73,17 @@
 
 /*Buttons CSS*/
 #edit-button {
-  top: 40%;
+  top: 35%;
   left: 8px;
   position: fixed;
 }
 #save-button {
-  top: 50%;
+  top: 45%;
+  left: 8px;
+  position: fixed;
+}
+#return-button {
+  top: 55%;
   left: 8px;
   position: fixed;
 }
@@ -144,7 +149,6 @@
 
 .codeblock {
   background-color: #e6e6e6;
-  margin-top: 30px;
 }
 
 .oauth {
@@ -201,7 +205,7 @@
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 1000; /* Sit on top */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -251,6 +255,23 @@
 
 #first-button {
   margin-left: 30px;
+}
+
+/*Project Page CSS*/
+.page-list {
+  margin-top: 0;
+}
+
+.card-title {
+  cursor: pointer;
+}
+
+#edit-name {
+  cursor: pointer;
+}
+
+#export-button {
+  margin-left: 10px;
 }
 
 @media (max-width: 600px) {

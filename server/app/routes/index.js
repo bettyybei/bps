@@ -6,6 +6,7 @@ module.exports = router;
 
 router.use('/members', require('./members'));
 router.use('/projects', require('./projects'));
+router.use('/project', require('./pages'));
 router.use('/elements', require('./elements'));
 router.use('/users', require('./users'))
 
