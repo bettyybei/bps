@@ -11,7 +11,7 @@
         <li><a ng-show="!user" ui-sref="login" class="waves-effect waves-light btn">Login</a></li>
         <li><a ng-show="!user" ui-sref="register" class="waves-effect waves-light btn">Sign Up</a></li>
         <li><a ng-show="user" class="blue-text text-darken-3">Welcome, {{ user.firstName }}!</a></li>
-        <li><a ng-show="user" ng-click="logout()" class="btn login-button btn-space">Logout </a></li>
+        <li><a ng-show="user" ng-click="logout()" class="btn login-button btn-space waves-effect waves-light">Logout </a></li>
       </ul>
       <ul id="nav-mobile" class="side-nav center-align">
         <br>
@@ -22,7 +22,7 @@
         <li><a ng-show="!user" ui-sref="login" class="waves-effect waves-light btn" ng-click="closeSideNav()">Login</a></li>
         <li><a ng-show="!user" ui-sref="register" class="waves-effect waves-light btn" ng-click="closeSideNav()">Sign Up</a></li>
         <li><a ng-show="user" class="blue-text text-darken-3">Welcome, {{ user.firstName }}!</a></li>
-        <li><a ng-show="user" ng-click="logout()" class="btn login-button btn-space">Logout </a></li>
+        <li><a ng-show="user" ng-click="logout()" class="btn login-button btn-space waves-effect waves-light">Logout </a></li>
       </ul>
     </div>
   </nav>
