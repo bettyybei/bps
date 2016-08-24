@@ -38,7 +38,7 @@ app.controller('EditorController', function ($scope, $rootScope, EditorFactory, 
   // Get the button that opens the modal
   var btn = document.getElementById("myBtn");
   // Get the <span> element that closes the modal
-  var span = document.getElementsByClassName("close1")[0];
+  var span = document.getElementsByClassName("close")[0];
   // When the user clicks on <span> (x), close the modal
   span.onclick = function() {
     modal.style.display = "none";
@@ -50,7 +50,7 @@ app.controller('EditorController', function ($scope, $rootScope, EditorFactory, 
 
   PageFactory.getAllElements($stateParams.projectId, thePage.id)
   .then(function(page){
-    if(page.name === "Untitled Page") displayModal();
+    if(page[0].name === "Untitled Page") displayModal();
   });
 
   $scope.sendPage = function() {

@@ -41,7 +41,8 @@ app.controller('PageController', function($scope,AllPages, projectName, $statePa
 
     ProjectFactory.getProject($stateParams.id)
     .then(function(project){
-        if(project.name === "Untitled Project") displayModal();
+        console.log(project);
+        if(project[0].name === "Untitled Project") displayModal();
     })
 
     $scope.sendProject = function() {
