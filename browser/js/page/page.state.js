@@ -13,7 +13,7 @@ app.config(function ($stateProvider) {
             projectName: function(ProjectFactory, $stateParams) {
                 return ProjectFactory.getProject($stateParams.id)
                 .then(function(project) {
-                    return project[0].name;
+                    return project.name;
                 })
             }
         }
@@ -39,11 +39,7 @@ app.controller('PageController', function($scope,AllPages, projectName, $statePa
         modal.style.display = "block";
     }
 
-    ProjectFactory.getProject($stateParams.id)
-    .then(function(project){
-        console.log(project);
-        if(project[0].name === "Untitled Project") displayModal();
-    })
+    if(projectName === "Untitled Project") displayModal();
 
     $scope.sendProject = function() {
         ProjectFactory.updateName($stateParams.id, $scope.inputTitle)
@@ -53,6 +49,10 @@ app.controller('PageController', function($scope,AllPages, projectName, $statePa
         })
     }
     //END MODAL CODE
+
+    $scope.openProjName = function() {
+        displayModal();
+    }
 
     $scope.addPage = function(){
         PageFactory.create($stateParams.id)

@@ -17,25 +17,21 @@ app.directive('newButton', ['ButtonFactory',function (ButtonFactory) {
           scope.currentColor = elemObj.color;
           scope.currentShade = elemObj.shade;
 
-          ButtonFactory.getAllPages(scope.$parent.$parent.elements[0].pageId)
+/*          ButtonFactory.getAllPages(scope.$parent.$parent.elements[0].pageId)
             .then(function(allPages){
-            console.log('allPages',allPages)   
               scope.pages = allPages;
-              // $('.dropdown-button').dropdown('open');
-              // $('.dropdown-button').dropdown({
-              //   inDuration: 300,
-              //   outDuration: 225,
-              //   constrain_width: false, // Does not change width of dropdown to that of the activator
-              //   //hover: true, // Activate on hover
-              //   gutter: 0, // Spacing from edge
-              //   belowOrigin: false, // Displays dropdown below the button
-              //   alignment: 'left' // Displays dropdown with edge aligned to the left of button
-              // })
+              angular.element(elem.find('.dropdown-button')[0]).dropdown({
+                inDuration: 300,
+                outDuration: 225,
+                constrain_width: false, // Does not change width of dropdown to that of the activator
+                // hover: true, Activate on hover
+                gutter: 0, // Spacing from edge
+                belowOrigin: true, // Displays dropdown below the button
+                alignment: 'left', // Displays dropdown with edge aligned to the left of button
+                stoppropagation: true
+              })
             });
-
-      
-
-          
+*/
 
           scope.$on('changeGrid', function(event, dimension){
             elem.draggable("option", "grid", [dimension,dimension])
@@ -66,12 +62,14 @@ app.directive('newButton', ['ButtonFactory',function (ButtonFactory) {
             }
           });
 
-          
+
 
           let isSelected = false;
           scope.toggleSelected = function () {
-              isSelected = !isSelected; 
+            isSelected = !isSelected;
           }
+
+          let pageSelect = false;
 
           scope.$on('colorChange', function(event, color){
             if (isSelected) {
@@ -91,24 +89,6 @@ app.directive('newButton', ['ButtonFactory',function (ButtonFactory) {
             return `dropdown-button btn absolute ${scope.currentColor} ${scope.currentShade} ${isSelected ? 'selected' : ''}`;
           }
 
-
-
-          // scope.setHref = function(){
-          //   ButtonFactory.getAllPages(scope.$parent.$parent.elements[0].pageId)
-          //   .then(function(allPages){
-          //     scope.pages = allPages;
-          //     $('.dropdown-button').dropdown({
-          //       inDuration: 300,
-          //       outDuration: 225,
-          //       constrain_width: false, // Does not change width of dropdown to that of the activator
-          //       hover: true, // Activate on hover
-          //       gutter: 0, // Spacing from edge
-          //       belowOrigin: false, // Displays dropdown below the button
-          //       alignment: 'left' // Displays dropdown with edge aligned to the left of button
-          //     });
-          //     $('.dropdown-button').dropdown('open');
-          //   })
-          // }
         }
     };
 }]);
@@ -124,5 +104,5 @@ app.factory('ButtonFactory', function($http){
     })
   }
   return ButtonFactory;
-  
+
 })

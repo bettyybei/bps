@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 class="teal-text"><span class="black-text cursive">Project Page for: </span> {{projectName}}</h2>
+  <h2 class="teal-text"><span class="black-text cursive">Project Page for: </span> {{projectName}} <a class="black-text" title="Edit Project Name" ng-click="openProjName()" id="edit-name"><i class="material-icons">create</i></a></h2>
 
   <div id="myModal" class="modal float_center">
     <div class="modal-content">
@@ -10,7 +10,7 @@
         <div class="form-group">
             <input type="text" ng-model="inputTitle" class="form-control" placeholder="Enter project name">
         </div>
-        <button class="btn" id="finish-button">Continue to project <i class="material-icons right">arrow_forward</i></button>
+        <button class="btn" id="finish-button">Continue <i class="material-icons right">arrow_forward</i></button>
       </form>
 
     </div>
@@ -21,13 +21,15 @@
     <thead>
       <tr>
         <th data-field="name">Page Name</th>
-        <th data-field="manage">Manage</th>
-        <th data-field="manage">Preview</th>
+        <th>Last Updated</th>
+        <th>Manage</th>
+        <th>Preview</th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="page in pages">
         <td>{{page.name}}</td>
+        <td>{{page.lastUpdated}}</td>
         <td><a class="btn-floating" ng-click="loadPage(page.id)"><i class="material-icons">create</i></a><a class="btn-floating red btn-spacing" ng-click="deletePage(page.id)"><i class="material-icons">delete_forever</i></a></td>
         <td ng-click="loadPage(page.id)">
           <div id="IframeWrapper">

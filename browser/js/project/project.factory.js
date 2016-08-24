@@ -26,7 +26,7 @@ app.factory('ProjectFactory', function($http) {
   project.getProject = function(id){
     return $http.get('/api/projects/'+ id)
     .then(function(res){
-      return res.data;
+      return res.data[0];
     })
   }
 
