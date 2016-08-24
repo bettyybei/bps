@@ -59,7 +59,7 @@ app.controller('PageController', function($scope,AllPages, projectName, $statePa
         .then(function(page){
           $scope.loadPage(page.id);
         });
-  }
+    }
 
     $scope.deletePage = function(id){
         if(confirm('Are you sure you want to delete this page? This cannot be undone.')){
@@ -74,5 +74,8 @@ app.controller('PageController', function($scope,AllPages, projectName, $statePa
         $state.go('editor', { pageId: input, projectId: $stateParams.id });
     }
 
+    $scope.exportCode = function() {
+        $state.go('exportCode', { id: $stateParams.id });
+    }
 
 })
