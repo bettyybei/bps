@@ -73,12 +73,17 @@
 
 /*Buttons CSS*/
 #edit-button {
-  top: 40%;
+  top: 35%;
   left: 8px;
   position: fixed;
 }
 #save-button {
-  top: 50%;
+  top: 45%;
+  left: 8px;
+  position: fixed;
+}
+#return-button {
+  top: 55%;
   left: 8px;
   position: fixed;
 }
@@ -263,10 +268,6 @@
 
 #edit-name {
   cursor: pointer;
-}
-
-#new-page {
-  margin-left: 20%;
 }
 
 @media (max-width: 600px) {

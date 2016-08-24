@@ -168,6 +168,11 @@ app.controller('EditorController', function ($scope, $rootScope, EditorFactory, 
     })
   }
 
+  $scope.returnToProject = function () {
+    $scope.saveProject();
+    $state.go('pages', {id: $stateParams.projectId });
+  }
+
   //for background color
   $scope.getClasses = function () {
     return `${$scope.currentBgColor} ${$scope.currentBgShade}`;
