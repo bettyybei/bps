@@ -13,7 +13,27 @@ router.get('/:projectId/page', function(req,res,next){
 		order: '"updatedAt" DESC'
 	})
 	.then(function(pages){
+		console.log('back',pages)
 		res.send(pages);
+	})
+	.catch(next);
+})
+
+router.get('/page/:pageId/getAllPages', function(req,res,next){
+	Page.findOne({
+		where: {
+			id: req.params.pageId
+		}
+	})
+	.then(function(page){
+		Page.findAll({
+			where:{
+				projectId: page.projectId
+			}
+		})
+		.then(function(pages){
+			res.send(pages);
+		})	
 	})
 	.catch(next);
 })

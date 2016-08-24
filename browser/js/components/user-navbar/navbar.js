@@ -1,4 +1,4 @@
-app.directive('userNavbar', function () {
+app.directive('userNavbar', ['NavbarFactory',function (NavbarFactory) {
     return {
         restrict: 'E',
           scope: {
@@ -8,6 +8,7 @@ app.directive('userNavbar', function () {
         templateUrl: 'js/components/user-navbar/navbar.html',
         link: function(scope, elem, attr) {
           let elemObj = scope.elements[scope.index];
+          console.log(scope)
           scope.currentColor = elemObj.color;
           scope.currentShade = elemObj.shade;
 
@@ -34,6 +35,25 @@ app.directive('userNavbar', function () {
             return `${scope.currentColor} ${scope.currentShade} ${isSelected ? 'selected' : ''}`;
           }
 
+          scope.setPage = function() {
+           NavbarFactory.getAllPages(elemObj.pageId)
+            .then(function(allPages){
+              console.log(allPages)
+              scope.pages = allPages;
+              $('.dropdown-button').dropdown('open');
+              angular.element(elem.find('.dropdown-button')[0]).dropdown({
+                inDuration: 300,
+                outDuration: 225,
+                constrain_width: false, // Does not change width of dropdown to that of the activator
+                // hover: true, Activate on hover
+                gutter: 0, // Spacing from edge
+                belowOrigin: true, // Displays dropdown below the button
+                alignment: 'left', // Displays dropdown with edge aligned to the left of button
+                stoppropagation: true
+              })
+            });
+          }
+
           scope.delete = function(){
             if(confirm('Are you sure you want to delete the navbar?')) {
               elemObj.type = 'deleted';
@@ -42,4 +62,19 @@ app.directive('userNavbar', function () {
           }
         }
     };
-});
+}]);
+
+app.factory('NavbarFactory', function($http){
+
+  var NavbarFactory = {};
+
+  NavbarFactory.getAllPages = function(id){
+
+    return $http.get('/api/project/page/'+id +'/getAllPages')
+    .then(function(res){
+      return res.data;
+    })
+  }
+  return NavbarFactory;
+
+})

@@ -1,9 +1,15 @@
 <div id="user-navbar">
-  <nav ng-class="getClasses()" ng-click="toggleSelected()">
+  <nav ng-class="getClasses()" ng-dblclick="toggleSelected()">
     <div class="nav-wrapper container">
       <a class="brand-logo">Sample Navbar</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a >Home</a></li>
+        <li>
+          <a class='.dropdown-button'  ng-click='setPage()'>
+            <ul id="dropdown1" class="dropdown-content">
+              <li ng-repeat="page in pages">{{page.name}}</li>
+            </ul>
+          Home</a>
+        </li>
         <li><a >About</a></li>
         <li><a >Contact</a></li>
         <li><a >Login</a></li>

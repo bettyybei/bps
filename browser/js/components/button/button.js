@@ -1,5 +1,5 @@
 
-app.directive('newButton', ['ButtonFactory',function (ButtonFactory) {
+app.directive('newButton',function () {
     return {
         restrict: 'E',
         scope: {
@@ -92,18 +92,4 @@ app.directive('newButton', ['ButtonFactory',function (ButtonFactory) {
 
         }
     };
-}]);
-
-app.factory('ButtonFactory', function($http){
-
-  var ButtonFactory = {};
-
-  ButtonFactory.getAllPages = function(id){
-    return $http.get('/api/project/'+id+'/page')
-    .then(function(res){
-      return res.data;
-    })
-  }
-  return ButtonFactory;
-
-})
+});
