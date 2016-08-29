@@ -2,7 +2,7 @@
 
 Paletro is a web application for designing custom HTML pages with an easy to use drag and drop editor. Users can save projects and download them anytime from their account. No knowledge of coding is needed.
 
-[Link to App](https://paletro.herokuapp.com/ "Paletro")
+Deployed: [Link to App](https://paletro.herokuapp.com/ "Paletro")
 
 
 ## Features
